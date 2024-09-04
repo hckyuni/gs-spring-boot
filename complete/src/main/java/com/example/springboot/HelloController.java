@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class UserController {
+public class HelloController {
 
     private final JdbcTemplate jdbcTemplate;
 
-    public UserController(JdbcTemplate jdbcTemplate) {
+    public HelloController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
