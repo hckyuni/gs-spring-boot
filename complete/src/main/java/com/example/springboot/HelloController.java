@@ -1,20 +1,23 @@
 package com.example.springboot;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+public class UserController {
 
-    // 취약점이 있는 코드: 입력값을 검증하지 않음
-    @GetMapping("/greet")
-    public String greet(@RequestParam String name) {
-        return "Hello, " + name + "!";
+    private final JdbcTemplate jdbcTemplate;
+
+    public UserController(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
+    @GetMapping("/user")
+    public String getUser(@RequestParam String username) {
+        // 취약점이 있는 코드: SQL Injection 공격에 노출됨
+        String query = "SELECT * FROM users WHERE username = '" + username + "'";
+        return jdbcTemplate.queryForObject(query, String.class);
     }
 }
