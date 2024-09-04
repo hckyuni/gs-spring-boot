@@ -21,6 +21,8 @@ dependencies {
 	// tag::tests[]
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	// end::tests[]
+    	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    	implementation 'com.h2database:h2' // 또는 사용 중인 다른 데이터베이스 드라이버
 }
 
 test {
