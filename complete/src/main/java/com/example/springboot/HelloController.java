@@ -14,6 +14,12 @@ public class HelloController {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @GetMapping("/")
+    public String index() {
+	return "Greetings from Spring Boot!";
+    }
+
+
     @GetMapping("/user")
     public String getUser(@RequestParam String username) {
         // 취약점이 있는 코드: SQL Injection 공격에 노출됨
